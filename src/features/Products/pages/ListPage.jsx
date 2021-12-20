@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Box, Grid, makeStyles, Paper } from '@material-ui/core'
 import { Pagination } from '@material-ui/lab'
 import productApi from 'api/productApi'
-import FilterViewer from '../components/FilterViewer'
-import ProductFilters from '../components/ProductFilters'
+import FilterViewer from '../components/FiltersComponents/components/FilterViewer'
+import ProductFilters from '../components/FiltersComponents/components/ProductFilters'
 import ProductSort from '../components/ProductSort'
 import ProductSkeleton from '../components/ProductSkeleton'
 import ProductList from '../components/ProductList'
@@ -13,13 +13,16 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3)
     },
-    paperLeft: {
+    left: {
         color: theme.palette.text.secondary,
     },
-    paperRight: {
-        padding: theme.spacing(2),
+    right: {
         textAlign: 'center',
         color: theme.palette.text.secondary,
+    },
+    paperLeft: {},
+    paperRight: {
+        padding: theme.spacing(2),
     },
     boxPagination: {
         marginTop: theme.spacing(4),
@@ -92,12 +95,12 @@ const ListPage = () => {
     return (
         <Box className={classes.root}>
             <Grid container spacing={3}>
-                <Grid item xs={4}>
+                <Grid item xs={4} className={classes.left}>
                     <Paper className={classes.paperLeft}>
                         <ProductFilters filters={filters} onChange={handleFilterChange} />
                     </Paper>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={8} className={classes.right}>
                     <Paper className={classes.paperRight}>
                         <ProductSort filters={filters} onChange={handleSortChange} />
                         <FilterViewer filters={filters} onChange={handleFilterViewer} />

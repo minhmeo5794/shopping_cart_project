@@ -1,7 +1,8 @@
 import React from 'react'
 import { Box, Grid, makeStyles, Typography } from '@material-ui/core'
 import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants/host'
-
+import { formatPrice } from 'utils'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     boxImg: {
@@ -28,24 +29,33 @@ const useStyles = makeStyles(theme => ({
 
 const Product = ({ product }) => {
     const classes = useStyles()
+    const history = useHistory()
+    const { url } = useRouteMatch()
 
     const thumbnailValue = product.thumbnail
         ? `${STATIC_HOST}${product.thumbnail.url}`
         : THUMBNAIL_PLACEHOLDER
 
+
+    const handleClick = () => {
+        history.push(`${url}/${product.id}`)
+    }
+
     return (
         <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Box className={classes.boxImg}>
-                <img className={classes.thumbnail} src={thumbnailValue} alt={product.name} />
-            </Box>
-            <Box className={classes.name}>
-                {product.name}
-            </Box>
-            <Box className={classes.price}>
-                <Typography className="priceValue">
-                    {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.salePrice)}
+            <Box onClick={handleClick}>
+                <Box className={classes.boxImg}>
+                    <img className={classes.thumbnail} src={thumbnailValue} alt={product.name} />
+                </Box>
+                <Typography className={classes.name}>
+                    {product.name}
                 </Typography>
-                {product.promotionPercent > 0 ? ` -${product.promotionPercent}%` : ''}
+                <Box className={classes.price}>
+                    <Typography className="priceValue">
+                        {formatPrice(product.salePrice)}
+                    </Typography>
+                    {product.promotionPercent > 0 ? ` -${product.promotionPercent}%` : ''}
+                </Box>
             </Box>
         </Grid>
     )

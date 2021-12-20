@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box, makeStyles } from '@material-ui/core'
-import FilterByCategory from './Filters/FilterByCategory'
-import FilterByPrice from './Filters/FilterByPrice'
-import FilterByService from './Filters/FilterByService'
+import FilterByCategory from '../FiltersTypes/FilterByCategory'
+import FilterByPrice from '../FiltersTypes/FilterByPrice'
+import FilterByService from '../FiltersTypes/FilterByService'
 
 const useStyles = makeStyles(theme => ({
     root: {
