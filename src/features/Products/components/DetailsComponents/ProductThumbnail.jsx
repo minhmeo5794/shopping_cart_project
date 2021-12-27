@@ -9,10 +9,6 @@ const ProductThumbnail = ({ product }) => {
         ? `${STATIC_HOST}${product.thumbnail.url}`
         : THUMBNAIL_PLACEHOLDER
 
-
-    console.log(product);
-
-
     return (
         <Box style={{ padding: '10px' }}>
             <img src={thumbnailValue} alt={product.name} width="100%" />

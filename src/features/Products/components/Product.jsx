@@ -5,6 +5,9 @@ import { formatPrice } from 'utils'
 import { useHistory, useRouteMatch } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
+    product: {
+        cursor: 'pointer',
+    },
     boxImg: {
         padding: '5px',
     },
@@ -43,7 +46,7 @@ const Product = ({ product }) => {
 
     return (
         <Grid item xs={12} sm={6} md={4} lg={3}>
-            <Box onClick={handleClick}>
+            <Box onClick={handleClick} className={classes.product}>
                 <Box className={classes.boxImg}>
                     <img className={classes.thumbnail} src={thumbnailValue} alt={product.name} />
                 </Box>
